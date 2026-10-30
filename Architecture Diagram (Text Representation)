@@ -1,0 +1,19 @@
+[ Internet / Users ]
+                                        │
+                                        ▼
+                             [ Internet Gateway (IGW) ]
+                                        │
+             ┌──────────────────────────┴──────────────────────────┐
+             ▼                                                     ▼
+   [ Public Subnet (AZ-A) ]                              [ Public Subnet (AZ-B) ]
+   • CIDR: 10.0.1.0/24                                   • CIDR: 10.0.3.0/24
+   • NAT Gateway (for outbound)                          • Public Route Table
+             │                                                     │
+             └──────────────────────────┬──────────────────────────┘
+                                        │
+             ┌──────────────────────────┴──────────────────────────┐
+             ▼                                                     ▼
+   [ Private Subnet (AZ-A) ]                             [ Private Subnet (AZ-B) ]
+   • CIDR: 10.0.2.0/24                                   • CIDR: 10.0.4.0/24
+   • Backend App Servers / Databases                     • Private Route Table (via NAT)
+   • Strict Security Groups (Isolated from Internet)     • Isolated from Inbound Internet
